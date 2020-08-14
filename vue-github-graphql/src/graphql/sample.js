@@ -3,9 +3,16 @@ export const Sample = gql`
   query {
     viewer {
       login
-      company
-      followers(first: 1) {
-        totalCount
+      id
+      name
+      avatarUrl
+      repositories(first: 10) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
       }
     }
   }

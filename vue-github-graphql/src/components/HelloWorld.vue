@@ -43,14 +43,22 @@
           </v-card-actions>
         </v-card>
       </v-layout>
+      <p>{{ viewer }}</p>
     </v-app>
   </v-container>
 </template>
 
 <script>
+import { Sample } from "../graphql/sample";
 export default {
   name: "HelloWorld",
-
-  data: () => ({}),
+  apollo: {
+    viewer: Sample,
+  },
+  data() {
+    return {
+      viewer: [],
+    };
+  },
 };
 </script>
