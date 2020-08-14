@@ -30,6 +30,7 @@
     "eslint-plugin-graphql": "^2.1.1",
     "eslint-plugin-vue": "^6.2.2",
     "graphql-tag": "^2.9.0",
+    "material-design-icons-iconfont": "^5.0.1",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-apollo": "~0.22.2",
