@@ -13,15 +13,18 @@
       </div>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-col cols="8" sm="6" md="3" lg="4">
+        <v-text-field
+          hide-details
+          height="40px"
+          width="200px"
+          outlined
+          dense
+          single-line
+          append-icon="search"
+          placeholder="Search public repositories!"
+        ></v-text-field>
+      </v-col>
     </v-app-bar>
 
     <v-main>

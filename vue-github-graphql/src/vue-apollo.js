@@ -4,6 +4,7 @@ import {
   createApolloClient,
   restartWebsockets,
 } from "vue-cli-plugin-apollo/graphql-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
 
 // Install the vue plugin
 Vue.use(VueApollo);
@@ -12,22 +13,12 @@ Vue.use(VueApollo);
 const AUTH_TOKEN = "apollo-token";
 
 // Http endpoint
-const httpEndpoint =
-  process.env.VUE_APP_GRAPHQL_HTTP || "https://api.github.com/graphql";
-// Files URL root
-export const filesRoot =
-  process.env.VUE_APP_FILES_ROOT ||
-  httpEndpoint.substr(0, httpEndpoint.indexOf("/graphql"));
-
-Vue.prototype.$filesRoot = filesRoot;
+const httpEndpoint = " https://api.github.com/graphql";
 
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
   httpEndpoint,
-  // You can use `wss` for secure connection (recommended in production)
-  // Use `null` to disable subscriptions
-  wsEndpoint: null,
   // LocalStorage token
   tokenName: AUTH_TOKEN,
   // Enable Automatic Query persisting with Apollo Engine
@@ -45,6 +36,9 @@ const defaultOptions = {
 
   // Override default cache
   // cache: myCache
+  cache: new InMemoryCache({
+    freezeResults: false,
+  }),
 
   // Override the way the Authorization header is set
   getAuth: () => {

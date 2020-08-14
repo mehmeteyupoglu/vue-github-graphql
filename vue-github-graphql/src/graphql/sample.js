@@ -2,7 +2,11 @@ import gql from "graphql-tag";
 export const Sample = gql`
   query {
     viewer {
-      name
+      login
+      company
+      followers(first: 1) {
+        totalCount
+      }
     }
   }
 `;
