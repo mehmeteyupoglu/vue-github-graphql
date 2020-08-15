@@ -4,13 +4,20 @@ export const Sample = gql`
     viewer {
       login
       id
-      name
       avatarUrl
-      repositories(first: 10) {
+      repositories(last: 10) {
         edges {
           node {
             id
             name
+            nameWithOwner
+            description
+            stargazers(first: 20) {
+              totalCount
+            }
+            watchers(first: 20) {
+              totalCount
+            }
           }
         }
       }
