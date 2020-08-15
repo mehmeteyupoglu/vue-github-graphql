@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="grey darken-3" dark>
+    <v-app-bar app dark>
       <div class="d-flex align-center">
         <v-img
           alt="GitHub Logo"
@@ -15,6 +15,7 @@
       <v-spacer></v-spacer>
       <v-col cols="8" sm="6" md="3" lg="4">
         <v-text-field
+          v-model="search"
           hide-details
           height="40px"
           width="200px"
@@ -22,14 +23,15 @@
           dense
           single-line
           append-icon="search"
-          placeholder="Search public repositories!"
+          placeholder="Search by repository name"
         ></v-text-field>
       </v-col>
     </v-app-bar>
-
-    <v-main>
-      <HelloWorld />
-    </v-main>
+    <v-flex row>
+      <v-main>
+        <HelloWorld :search="search" />
+      </v-main>
+    </v-flex>
   </v-app>
 </template>
 
@@ -43,8 +45,11 @@ export default {
     HelloWorld,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      search: "",
+    };
+  },
 };
 </script>
+<style></style>
