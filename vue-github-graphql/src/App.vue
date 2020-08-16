@@ -33,7 +33,7 @@
       <v-container fluid>
         <v-row>
           <NavigationDrawer />
-          <HelloWorld :search="search" />
+          <HelloWorld />
         </v-row>
       </v-container>
     </v-main>

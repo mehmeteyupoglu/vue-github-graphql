@@ -7,7 +7,7 @@
           class="d-flex flex-row flex-wrap mb-5 mr-3 ml-2  "
           max-width="330"
           max-height="200"
-          v-for="(item, i) in filteredRepository"
+          v-for="(item, i) in search.edges"
           :key="i"
           tile
         >
@@ -15,7 +15,7 @@
             <v-list-item-content>
               <div class="overline font-weight-black text--secondary">
                 <span class="black--text font-weight-black" light
-                  >{{ item.node.name }}
+                  >{{ item.node.owner.login }}
                 </span>
               </div>
 
@@ -52,29 +52,31 @@
         </v-card>
       </v-layout>
     </v-app>
-    <!-- {{ filteredRepository }} -->
   </v-container>
 </template>
 
 <script>
 import { Sample } from "../graphql/sample";
+import { Search } from "../graphql/Search";
 export default {
   name: "HelloWorld",
   apollo: {
     viewer: Sample,
+    search: Search,
   },
-  props: ["search"],
+
   data() {
     return {
       viewer: [],
+      search: [],
     };
   },
-  computed: {
-    filteredRepository() {
-      return this.viewer.repositories.edges.filter((item) =>
-        item.node.name.match(this.search)
-      );
-    },
-  },
+  // computed: {
+  //   filteredRepository() {
+  //     return this.viewer.repositories.edges.filter((item) =>
+  //       item.node.name.match(this.search)
+  //     );
+  //   },
+  // },
 };
 </script>
