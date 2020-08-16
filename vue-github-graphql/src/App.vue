@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app dark>
+    <v-app-bar app dark color="grey darken-4">
       <div class="d-flex align-center">
         <v-img
           alt="GitHub Logo"
@@ -10,6 +10,7 @@
           transition="scale-transition"
           width="40"
         />
+        <v-list-item-title>GitHub Personal App</v-list-item-title>
       </div>
 
       <v-spacer></v-spacer>
@@ -27,22 +28,28 @@
         ></v-text-field>
       </v-col>
     </v-app-bar>
-    <v-flex row>
-      <v-main>
-        <HelloWorld :search="search" />
-      </v-main>
-    </v-flex>
+
+    <v-main>
+      <v-container fluid>
+        <v-row>
+          <NavigationDrawer />
+          <HelloWorld :search="search" />
+        </v-row>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld";
+import NavigationDrawer from "./components/NavigationDrawer";
 
 export default {
   name: "App",
 
   components: {
     HelloWorld,
+    NavigationDrawer,
   },
 
   data() {

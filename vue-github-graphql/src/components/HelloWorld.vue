@@ -4,9 +4,9 @@
       <v-layout row wrap>
         <v-card
           color="grey lighten-4"
-          class="d-flex flex-row flex-wrap mb-5 mr-3  "
-          max-width="350"
-          max-height="350"
+          class="d-flex flex-row flex-wrap mb-5 mr-3 ml-2  "
+          max-width="330"
+          max-height="200"
           v-for="(item, i) in filteredRepository"
           :key="i"
           tile
@@ -40,9 +40,6 @@
                 visibility
               </v-icon>
             </v-btn>
-            <!-- <div>
-              <p>{{ item.node.isPrivate ? "Private" : "Public" }}</p>
-            </div> -->
 
             <v-btn
               text
