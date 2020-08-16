@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="grey darken-3" dark>
+    <v-app-bar app dark color="grey darken-4">
       <div class="d-flex align-center">
         <v-img
           alt="GitHub Logo"
@@ -10,11 +10,13 @@
           transition="scale-transition"
           width="40"
         />
+        <v-list-item-title>GitHub Personal App</v-list-item-title>
       </div>
 
       <v-spacer></v-spacer>
       <v-col cols="8" sm="6" md="3" lg="4">
         <v-text-field
+          v-model="search"
           hide-details
           height="40px"
           width="200px"
@@ -22,29 +24,39 @@
           dense
           single-line
           append-icon="search"
-          placeholder="Search public repositories!"
+          placeholder="Search by repository name"
         ></v-text-field>
       </v-col>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <v-container fluid>
+        <v-row>
+          <NavigationDrawer />
+          <HelloWorld :search="search" />
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld";
+import NavigationDrawer from "./components/NavigationDrawer";
 
 export default {
   name: "App",
 
   components: {
     HelloWorld,
+    NavigationDrawer,
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      search: "",
+    };
+  },
 };
 </script>
+<style></style>
