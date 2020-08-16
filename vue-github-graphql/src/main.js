@@ -3,11 +3,13 @@ import App from "./App.vue";
 import { createProvider } from "./vue-apollo";
 import vuetify from "./plugins/vuetify";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
+import router from './router'
 
 Vue.config.productionTip = false;
 
 new Vue({
   apolloProvider: createProvider(),
   vuetify,
-  render: (h) => h(App),
+  router,
+  render: (h) => h(App)
 }).$mount("#app");
