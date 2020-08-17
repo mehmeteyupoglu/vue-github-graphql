@@ -29,15 +29,16 @@ import gql from "graphql-tag";
 //   }
 // `;
 
-export const Search = gql`
-  {
-    search(query: "language:JavaScript", type: REPOSITORY, first: 10) {
+export const SEARCH = gql`
+  query SearchPublicRepos($queryString: String!) {
+    search(query: $queryString, type: REPOSITORY, first: 10) {
       repositoryCount
       edges {
         node {
           ... on Repository {
             owner {
               login
+              avatarUrl
             }
             description
             name
@@ -55,7 +56,3 @@ export const Search = gql`
     }
   }
 `;
-
-// {
-//   "query" : "language:JavaScript"
-// }
