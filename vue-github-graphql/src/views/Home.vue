@@ -1,18 +1,23 @@
 <template>
-  <div>
-    <App />
-    <HelloWorld />
-  </div>
+  <v-main>
+    <v-container fluid>
+      <v-row>
+        <HelloWorld :searchString="homeDefault" />
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
-// @ is an alias to /src
-
-import App from "../App.vue";
 import HelloWorld from "../components/HelloWorld";
 
 export default {
   name: "Home",
-  components: { App, HelloWorld },
+  data() {
+    return {
+      homeDefault: "JavaScript",
+    };
+  },
+  components: { HelloWorld },
 };
 </script>
