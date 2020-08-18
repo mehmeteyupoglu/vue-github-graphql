@@ -1,16 +1,20 @@
 <template>
   <v-app-bar app dark color="grey darken-4">
-    <div class="d-flex align-center">
-      <v-img
-        alt="GitHub Logo"
-        class="shrink mr-2 "
-        contain
-        :src="require('../assets/GitHub-Mark-Light-64px.png')"
-        transition="scale-transition"
-        width="40"
-      />
-      <v-list-item-title>GitHub Personal App</v-list-item-title>
-    </div>
+    <router-link to="/">
+      <v-avatar>
+        <v-img
+          alt="GitHub Logo"
+          class="shrink mr-4 "
+          contain
+          :src="require('../assets/GitHub-Mark-Light-64px.png')"
+          transition="scale-transition"
+        />
+      </v-avatar>
+    </router-link>
+    <v-toolbar-title class="font-weight-black">
+      <span class="white--text text--darken-2 font-weight-bold">GitHub</span>
+      <span class="grey--text  font-weight-bold ml-2">Personal App</span>
+    </v-toolbar-title>
 
     <v-spacer></v-spacer>
     <v-col cols="8" sm="6" md="3" lg="4">
@@ -23,12 +27,11 @@
         dense
         single-line
         placeholder="Search by repository name"
+        v-on:keyup.enter="searchData"
+        append-icon="search"
       >
       </v-text-field>
     </v-col>
-    <v-btn @click="searchData" icon>
-      <v-icon>search</v-icon>
-    </v-btn>
   </v-app-bar>
 </template>
 
@@ -44,8 +47,8 @@ export default {
       this.$router.push("/");
     },
     searchData() {
-      this.$router.push("/search/" + this.searchLanguage);
-      this.searchLanguage = "";
+      this.$router.push("/search/" + this.search);
+      this.search = "";
     },
   },
 };
