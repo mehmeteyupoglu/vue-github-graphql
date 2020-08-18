@@ -43,10 +43,11 @@ export default {
     return {
       viewer: [],
       items: [
-        { title: "Home", icon: "home" },
-        { title: "Public Repos", icon: "group" },
-        { title: "Watched", icon: "visibility" },
-        { title: "Starred", icon: "star" },
+        { title: "Home", icon: "home", to: "/" },
+        {
+          title: "User",
+          icon: "account_circle",
+        },
       ],
     };
   },
