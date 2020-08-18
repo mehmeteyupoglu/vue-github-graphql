@@ -12,7 +12,7 @@ export const SEARCH = gql`
               avatarUrl
               url
             }
-
+            viewerHasStarred
             description
             name
             stargazers {
