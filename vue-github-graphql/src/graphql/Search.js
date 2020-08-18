@@ -39,6 +39,7 @@ export const SEARCH = gql`
             owner {
               login
               avatarUrl
+              url
             }
             description
             name

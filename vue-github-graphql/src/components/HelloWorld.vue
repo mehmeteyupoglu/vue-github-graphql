@@ -3,7 +3,7 @@
     <v-app>
       <v-layout row wrap>
         <v-overlay v-if="$apollo.loading">
-          <div v-if="$apollo.loading">
+          <div>
             <v-progress-circular
               :size="70"
               :width="7"
@@ -53,14 +53,17 @@
                 visibility
               </v-icon>
             </v-btn>
-
-            <v-btn
-              text
-              class="ml-12"
-              :class="item.node.isPrivate ? 'error--text' : 'success--text'"
-            >
-              {{ item.node.isPrivate ? "Private" : "Public" }}
-            </v-btn>
+            <a :href="item.node.owner.url" target="_blank">
+              <v-btn
+                small
+                text
+                class="ml-6"
+                :class="item.node.isPrivate ? 'error--text' : 'success--text'"
+              >
+                {{ item.node.isPrivate ? "Private" : "Public" }}
+                <v-icon>exit_to_app</v-icon>
+              </v-btn>
+            </a>
           </v-card-actions>
         </v-card>
       </v-layout>
@@ -92,3 +95,8 @@ export default {
   },
 };
 </script>
+<style>
+a {
+  text-decoration: none;
+}
+</style>

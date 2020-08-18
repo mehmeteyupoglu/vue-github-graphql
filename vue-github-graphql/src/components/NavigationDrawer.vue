@@ -20,12 +20,14 @@
     <v-divider></v-divider>
 
     <v-list nav dense>
-      <v-list-item link v-for="(item, i) in items" :key="i">
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item>
+      <router-link to="/">
+        <v-list-item link v-for="(item, i) in items" :key="i">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </router-link>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -41,6 +43,7 @@ export default {
     return {
       viewer: [],
       items: [
+        { title: "Home", icon: "home" },
         { title: "Public Repos", icon: "group" },
         { title: "Watched", icon: "visibility" },
         { title: "Starred", icon: "star" },
