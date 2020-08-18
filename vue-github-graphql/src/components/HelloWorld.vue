@@ -16,7 +16,7 @@
           color="grey lighten-4"
           class="d-flex flex-row flex-wrap mb-5 mr-3 ml-2  "
           max-width="335"
-          max-height="325"
+          max-height="250"
           v-for="(item, i) in search.edges"
           :key="i"
           tile
@@ -88,7 +88,7 @@ export default {
       query: SEARCH,
       variables() {
         return {
-          queryString: "language:" + this.searchString + " stars:>10000",
+          queryString: this.searchString,
         };
       },
     },
