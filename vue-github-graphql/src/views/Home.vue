@@ -15,7 +15,7 @@ export default {
   name: "Home",
   data() {
     return {
-      homeDefault: "JavaScript",
+      homeDefault: "nodejs",
     };
   },
   components: { HelloWorld },

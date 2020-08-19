@@ -18,10 +18,23 @@
     </v-list>
 
     <v-divider></v-divider>
-
-    <v-list nav dense>
-      <router-link to="/">
-        <v-list-item link v-for="(item, i) in items" :key="i">
+    <v-list>
+      <v-text-field
+        hide-details
+        height="40px"
+        width="150px"
+        outlined
+        dense
+        single-line
+        placeholder="Enter Your Token"
+        v-on:keyup.enter="sendToken"
+        append-icon="lock"
+      >
+      </v-text-field>
+    </v-list>
+    <v-list nav dense v-for="(item, i) in items" :key="i">
+      <router-link :to="item.to">
+        <v-list-item link>
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -47,6 +60,7 @@ export default {
         {
           title: "User",
           icon: "account_circle",
+          to: "/",
         },
       ],
     };
