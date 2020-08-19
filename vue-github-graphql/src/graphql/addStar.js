@@ -1,18 +1,9 @@
 import gql from "graphql-tag";
-export const STAR = gql`
-  mutation addStarMutation($input: AddStarInput!) {
-    addStar(input: $input) {
-      clientMutationId
+export const ADD_STAR = gql`
+  mutation AddStar($repoid: ID!) {
+    addStar(input: { starrableId: $repoid }) {
       starrable {
         viewerHasStarred
-        id
-        stargazers(last: 20) {
-          edges {
-            node {
-              name
-            }
-          }
-        }
       }
     }
   }

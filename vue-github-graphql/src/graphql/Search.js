@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const SEARCH = gql`
   query SearchPublicRepos($queryString: String!) {
-    search(query: $queryString, type: REPOSITORY, first: 40) {
+    search(query: $queryString, type: REPOSITORY, first: 20) {
       repositoryCount
       edges {
         node {
