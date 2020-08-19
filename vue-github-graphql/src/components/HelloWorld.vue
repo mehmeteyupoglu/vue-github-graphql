@@ -41,15 +41,30 @@
           </v-list-item>
 
           <v-card-actions>
-            <v-btn text>
-              {{ item.node.stargazers.totalCount }}
-              <v-icon>
-                star
-              </v-icon>
-            </v-btn>
+            <ApolloMutation
+              :mutation="!item.node.viewerHasStarred ? addStar : removeStar"
+              :variables="{ repoid: item.node.id }"
+              @done="onDone"
+            >
+              <template slot-scope="{ mutate, loading }">
+                <v-btn text :disabled="loading" @click="mutate()">
+                  {{ item.node.stargazers.totalCount }}
+                  <v-icon
+                    :color="
+                      item.node.viewerHasStarred ? 'amber darken-1' : 'black'
+                    "
+                  >
+                    {{ item.node.viewerHasStarred ? "star" : "star_outline" }}
+                  </v-icon>
+                </v-btn>
+              </template>
+            </ApolloMutation>
+
             <v-btn text>
               {{ item.node.watchers.totalCount }}
-              <v-icon>
+              <v-icon
+                :color="item.node.viewerHasStarred ? 'green darken-3' : 'error'"
+              >
                 visibility
               </v-icon>
             </v-btn>
@@ -73,12 +88,35 @@
 </template>
 
 <script>
+import { gql } from "apollo-boost";
 import { SEARCH } from "../graphql/Search";
+// import { ADD_STAR } from "../graphql/addStar";
+// import { REMOVE_STAR } from "../graphql/removeStar";
+
 export default {
   name: "HelloWorld",
   props: ["searchString"],
   data() {
     return {
+      addStar: gql`
+        mutation AddStar($repoid: ID!) {
+          addStar(input: { starrableId: $repoid }) {
+            starrable {
+              viewerHasStarred
+            }
+          }
+        }
+      `,
+      removeStar: gql`
+        mutation RemoveStar($repoid: ID!) {
+          removeStar(input: { starrableId: $repoid }) {
+            starrable {
+              viewerHasStarred
+            }
+          }
+        }
+      `,
+      viewer: [],
       search: [],
       queryString: "",
     };
@@ -91,6 +129,23 @@ export default {
           queryString: this.searchString,
         };
       },
+    },
+    // addStar: {
+    //   mutation: ADD_STAR,
+    // },
+    // removeStar: {
+    //   mutation: REMOVE_STAR,
+    // },
+  },
+  methods: {
+    onDone: function() {
+      this.refetch();
+    },
+    alert() {
+      alert("You already starred this repo!");
+    },
+    refetch() {
+      this.$apollo.queries.search.refetch();
     },
   },
 };
