@@ -23,12 +23,13 @@
         hide-details
         height="40px"
         width="150px"
+        @keydown.enter="data & login()"
         outlined
         dense
         single-line
         placeholder="Enter Your Token"
-        v-on:keyup.enter="sendToken"
         append-icon="lock"
+        v-model="token"
       >
       </v-text-field>
     </v-list>
@@ -42,28 +43,64 @@
         </v-list-item>
       </router-link>
     </v-list>
+
+    <v-list>
+      <v-btn
+        :color="data ? 'red' : 'success'"
+        block
+        @click="data ? logout() : login()"
+      >
+        {{ data ? "Logout" : "Login" }}
+      </v-btn>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
 import { Sample } from "../graphql/sample";
+import { SEARCH } from "../graphql/Search";
+
 export default {
   name: "NavigationDrawer",
   apollo: {
     viewer: Sample,
+    search: SEARCH,
   },
   data() {
     return {
+      search: [],
       viewer: [],
       items: [
         { title: "Home", icon: "home", to: "/" },
         {
           title: "User",
           icon: "account_circle",
-          to: "/",
+          to: "/search/remoteteam",
         },
       ],
+      token: "",
+      data: localStorage.token,
     };
+  },
+  methods: {
+    refetch() {
+      this.$apollo.queries.viewer.refetch();
+      this.$apollo.queries.search.refetch();
+    },
+    login() {
+      localStorage.setItem("token", this.token);
+      this.token = "";
+      this.$router.push("/search/remoteteam");
+      this.refetch();
+      this.data = localStorage.token;
+    },
+    logout() {
+      localStorage.removeItem("token");
+      this.data = localStorage.token;
+      this.refetch();
+      this.$router.push("/");
+      this.token = "";
+    },
   },
 };
 </script>

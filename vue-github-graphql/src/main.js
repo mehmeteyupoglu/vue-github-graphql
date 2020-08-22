@@ -13,13 +13,11 @@ const client = new ApolloClient({
   request: (operation) => {
     operation.setContext({
       headers: {
-        authorization: "Bearer " + "8b0d3b6597136d5fbfb56615c1cb0855b8599ce0",
+        authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
   },
 });
-
-//
 
 const apolloProvider = new VueApollo({
   defaultClient: client,
@@ -27,9 +25,11 @@ const apolloProvider = new VueApollo({
 
 Vue.config.productionTip = false;
 
-new Vue({
+export const vm = new Vue({
   apolloProvider,
   vuetify,
   router,
   render: (h) => h(App),
 }).$mount("#app");
+
+// token: "8b0d3b6597136d5fbfb56615c1cb0855b8599ce0"

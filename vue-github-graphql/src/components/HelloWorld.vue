@@ -83,15 +83,12 @@
         </v-card>
       </v-layout>
     </v-app>
-    <!-- {{ search.edges }} -->
   </v-container>
 </template>
 
 <script>
 import { gql } from "apollo-boost";
 import { SEARCH } from "../graphql/Search";
-// import { ADD_STAR } from "../graphql/addStar";
-// import { REMOVE_STAR } from "../graphql/removeStar";
 
 export default {
   name: "HelloWorld",
@@ -130,12 +127,6 @@ export default {
         };
       },
     },
-    // addStar: {
-    //   mutation: ADD_STAR,
-    // },
-    // removeStar: {
-    //   mutation: REMOVE_STAR,
-    // },
   },
   methods: {
     onDone: function() {
@@ -147,6 +138,28 @@ export default {
     refetch() {
       this.$apollo.queries.search.refetch();
     },
+    // update(store, { data: { addStar } }) {
+    //   const query = {
+    //     query: SEARCH,
+    //     variables: { queryString: this.searchString },
+    //   };
+    //   // Read the data from our cache for this query.
+    //   const { searchRepos } = store.readQuery(query);
+    //   // Add our speaker from the mutation to the end
+    //   // Write our data back to the cache.
+    //   store.writeQuery({
+    //     ...query,
+    //     data: {
+    //       searchRepos: searchRepos.concat({
+    //         ...addStar,
+    //         photo: {
+    //           url: "http://placekitten.com/100/100",
+    //           __typename: "Assets",
+    //         },
+    //       }),
+    //     },
+    //   });
+    // },
   },
 };
 </script>

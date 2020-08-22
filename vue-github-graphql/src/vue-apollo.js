@@ -41,16 +41,16 @@ const defaultOptions = {
   }),
 
   // Override the way the Authorization header is set
-  getAuth: () => {
-    // get the authentication token from local storage if it exists
-    const token = process.env.VUE_APP_GITHUB_GRAPHQL_AUTH_TOKEN;
-    // return the headers to the context so httpLink can read them
-    if (token) {
-      return "Bearer " + token;
-    } else {
-      return "";
-    }
-  },
+  // getAuth: () => {
+  //   // get the authentication token from local storage if it exists
+  //   const token = process.env.VUE_APP_GITHUB_GRAPHQL_AUTH_TOKEN;
+  //   // return the headers to the context so httpLink can read them
+  //   if (token) {
+  //     return "Bearer " + token;
+  //   } else {
+  //     return "";
+  //   }
+  // },
 
   // Additional ApolloClient options
   // apollo: { ... }

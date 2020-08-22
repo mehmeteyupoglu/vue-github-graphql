@@ -48,7 +48,6 @@ export default {
     },
     searchData() {
       this.$router.push("/search/" + this.search);
-      this.search = "";
     },
   },
 };
